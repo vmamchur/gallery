@@ -1,4 +1,59 @@
+@import "./shared/styles/global.scss";
 .App {
   display: flex;
   flex: 1;
+  flex-direction: column;
+  gap: 12px;
+
+  .section {
+    display: flex;
+
+    > div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .primary {
+      color: $blackText;
+      height: 100px;
+      width: 100px;
+      background-color: $primary100;
+    }
+    .primary80 {
+      height: 100px;
+      width: 100px;
+      background-color: $primary80;
+    }
+    .primary40 {
+      height: 100px;
+      width: 100px;
+      background-color: $primary40;
+    }
+    .primary10 {
+      height: 100px;
+      width: 100px;
+      background-color: $primary10;
+    }
+    .blackText {
+      color: white;
+      height: 100px;
+      width: 100px;
+      background-color: $blackText;
+    }
+    .grayLight {
+      height: 100px;
+      width: 100px;
+      background-color: $grayLight;
+    }
+    .grayDark {
+      height: 100px;
+      width: 100px;
+      background-color: $grayDark;
+    }
+    .grayMedium {
+      height: 100px;
+      width: 100px;
+      background-color: $grayMedium;
+    }
+  }
 }
