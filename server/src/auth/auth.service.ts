@@ -60,29 +60,28 @@ export class AuthService {
   }
 
   async getTokens(userId: string, username: string) {
-    const [accessToken, refreshToken] = await Promise.all([
-      this.jwtService.signAsync(
-        {
-          sub: userId,
-          username,
-        },
-        {
-          secret: process.env.JWT_ACCESS_SECRET,
-          expiresIn: '15m',
-        },
-      ),
-      this.jwtService.signAsync(
-        {
-          sub: userId,
-          username,
-        },
-        {
-          secret: process.env.JWT_REFRESH_SECRET,
-          expiresIn: '7d',
-        },
-      ),
-    ]);
- 
+    const accessToken = await this.jwtService.signAsync(
+      {
+        sub: userId,
+        username,
+      },
+      {
+        secret: process.env.JWT_ACCESS_SECRET,
+        expiresIn: '15m',
+      },
+    );
+
+    const refreshToken = await this.jwtService.signAsync(
+      {
+        sub: userId,
+        username, 
+      },
+      {
+        secret: process.env.JWT_REFRESH_SECRET,
+        expiresIn: '7d',
+      },
+    );
+
     return {
       accessToken,
       refreshToken,
@@ -99,7 +98,7 @@ export class AuthService {
     if (refreshToken !== user.refreshToken) {
       throw new ForbiddenException('Access denied');
     }
-console.log(user);
+
     const tokens = await this.getTokens(user._id, user.username);
 
     await this.usersService.update(user._id, {
