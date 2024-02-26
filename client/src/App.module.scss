@@ -1,0 +1,46 @@
+@import "./shared/styles/global.scss";
+.App {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 12px;
+
+  .section {
+    @include logo;
+    display: flex;
+    gap: 12px;
+    > div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 300px;
+      height: 300px;
+    }
+    .primary {
+      color: $blackText;
+      background-color: $primary100;
+    }
+    .primary80 {
+      background-color: $primary80;
+    }
+    .primary40 {
+      background-color: $primary40;
+    }
+    .primary10 {
+      background-color: $primary10;
+    }
+    .blackText {
+      color: white;
+      background-color: $blackText;
+    }
+    .grayLight {
+      background-color: $grayLight;
+    }
+    .grayDark {
+      background-color: $grayDark;
+    }
+    .grayMedium {
+      background-color: $grayMedium;
+    }
+  }
+}
