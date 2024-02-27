@@ -12,7 +12,7 @@ export class Image {
   description: string;
 
   @Prop({ required: true })
-  path: string;
+  filename: string;
 }
 
 export const ImageSchema = SchemaFactory.createForClass(Image);
