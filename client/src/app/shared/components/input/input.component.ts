@@ -10,4 +10,5 @@ export class InputComponent {
   @Input() label: string = '';
   @Input() hasError: boolean = false;
   @Input() hint: string = '';
+  @Input() placeholder: string = '';
 }

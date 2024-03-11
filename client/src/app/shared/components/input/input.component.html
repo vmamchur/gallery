@@ -6,7 +6,7 @@
   <input
     class="py-1 px-3 border-2 rounded-lg text-lg tracking-tight border-black text-black placeholder:text-primary-400 outline-none"
     [class.border-error]="hasError"
-    placeholder="Enter something"
+    [placeholder]="placeholder"
   />
 
   @if (hint) {
