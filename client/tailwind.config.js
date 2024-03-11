@@ -9,6 +9,7 @@ module.exports = {
       },
       colors: {
         white: "#FFFFFF",
+        black: "#1B1B1B",
         primary: {
           100: "#EEEEEE",
           200: "#D8D8D8",
@@ -17,7 +18,7 @@ module.exports = {
           500: "#696969",
           600: "#454545",
         },
-        black: "#1B1B1B",
+        error: "#E12B56",
       },
     },
   },
