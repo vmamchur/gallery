@@ -4,8 +4,19 @@ module.exports = {
   content: ["./src/**/*.{html,ts}"],
   theme: {
     extend: {
+      fontSize: {
+        "display-lg": "64px",
+        display: "48px",
+        "header-1": "34px",
+        "header-2": "28px",
+        "header-3": "24px",
+        "body-lg": "22px",
+        body: "18px",
+        caption: "16px",
+        tiny: "14px",
+      },
       fontFamily: {
-        sans: ['"Patrick Hand"', ...defaultTheme.fontFamily.sans],
+        sans: ["Patrick Hand", ...defaultTheme.fontFamily.sans],
       },
       colors: {
         white: "#FFFFFF",

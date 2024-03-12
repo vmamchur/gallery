@@ -1,15 +1,15 @@
 <label class="flex flex-col">
   @if (label) {
-    <span class="uppercase leading-tight tracking-tight">{{ label }}</span>
+    <span class="text-caption uppercase">{{ label }}</span>
   }
 
   <input
-    class="py-1 px-3 border-2 rounded-lg text-lg tracking-tight border-black text-black placeholder:text-primary-400 outline-none"
+    class="py-1 px-3 border-2 rounded-lg text-body border-black text-black placeholder:text-primary-400 outline-none"
     [class.border-error]="hasError"
     [placeholder]="placeholder"
   />
 
   @if (hint) {
-    <span class="tracking-tight" [class.text-error]="hasError">{{ hint }}</span>
+    <span class="text-caption" [class.text-error]="hasError">{{ hint }}</span>
   }
 </label>

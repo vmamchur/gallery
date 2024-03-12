@@ -7,9 +7,9 @@ const BUTTON_VARIANT = {
 };
 
 const BUTTON_SIZE = {
-  s: 'px-3 py-1 rounded-md text-base tracking-tight',
-  m: 'px-4 py-2 rounded-md text-lg leading-normal tracking-tight',
-  l: 'px-4 py-3 rounded-lg text-xl leading-7',
+  s: 'px-3 py-1 rounded-md text-caption',
+  m: 'px-4 py-2 rounded-md text-body',
+  l: 'px-4 py-3 rounded-lg text-body-lg',
 };
 
 @Component({
