@@ -4,8 +4,19 @@
   <div class="lg:max-w-7xl flex flex-grow items-center justify-between">
     <app-logo />
     <div class="flex gap-2 lg:gap-4">
-      <app-button variant="outline" size="m">Sign In</app-button>
-      <app-button variant="outline" size="m">Sign Up</app-button>
+      <app-button
+        routerLink="/sign-in"
+        [variant]="getAuthButtonVariant('/sign-in')"
+        size="m"
+        >Sign In</app-button
+      >
+
+      <app-button
+        routerLink="/sign-up"
+        [variant]="getAuthButtonVariant('/sign-up')"
+        size="m"
+        >Sign Up</app-button
+      >
     </div>
   </div>
 </header>
