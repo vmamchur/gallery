@@ -21,6 +21,8 @@ const BUTTON_SIZE = {
 export class ButtonComponent {
   @Input() variant!: keyof typeof BUTTON_VARIANT;
   @Input() size!: keyof typeof BUTTON_SIZE;
+  @Input() type: 'button' | 'submit' | 'reset' = 'button';
+  @Input() disabled: boolean = false;
 
   getClasses(): string {
     return `${BUTTON_VARIANT[this.variant]} ${BUTTON_SIZE[this.size]}`;

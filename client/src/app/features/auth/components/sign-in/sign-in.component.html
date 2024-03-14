@@ -1,1 +1,4 @@
-<p>sign-in works!</p>
+<app-auth-form title="Sign In" [group]="signInForm" (onSubmit)="handleSubmit()">
+  <app-input label="Username" [control]="signInForm.controls.username" />
+  <app-input label="Password" [control]="signInForm.controls.password" />
+</app-auth-form>
