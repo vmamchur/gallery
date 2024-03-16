@@ -8,12 +8,9 @@
     [formControl]="control"
   />
 
-  <div
-    *ngIf="control.errors && (control.dirty || control.touched)"
-    class="text-caption text-error"
-  >
-    <span *ngIf="control.errors['required']">This field is required</span>
-    <span *ngIf="control.errors['minlength']">Too short</span>
-    <span *ngIf="control.errors['notsame']">Passwords do not match</span>
+  <div *ngIf="hasError" class="text-caption text-error">
+    <span *ngIf="control.errors!['required']">This field is required</span>
+    <span *ngIf="control.errors!['minlength']">Too short</span>
+    <span *ngIf="control.errors!['notsame']">Passwords do not match</span>
   </div>
 </label>

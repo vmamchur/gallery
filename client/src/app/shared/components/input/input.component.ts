@@ -10,8 +10,11 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 })
 export class InputComponent {
   @Input() label: string = '';
-  @Input() hasError: boolean = false;
   @Input() error: string = '';
   @Input() placeholder: string = '';
   @Input() control!: FormControl;
+
+  get hasError() {
+    return this.control.errors && this.control.touched;
+  }
 }
