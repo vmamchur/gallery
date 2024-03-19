@@ -1,7 +1,8 @@
-const defaultTheme = require("tailwindcss/defaultTheme");
+import defaultTheme from "tailwindcss/defaultTheme";
 
-module.exports = {
-  content: ["./src/**/*.{html,ts}"],
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: ["./src/**/*.tsx"],
   theme: {
     extend: {
       fontSize: {
@@ -33,5 +34,4 @@ module.exports = {
       },
     },
   },
-  plugins: [],
 };
