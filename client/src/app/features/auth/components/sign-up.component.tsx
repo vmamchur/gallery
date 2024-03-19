@@ -4,7 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Input from "@shared/components/input.component";
 import AuthForm from "./auth-form.component";
 import signUpSchema from "../schemas/sign-up.schema";
-import { ISignUp } from "../types/sign-up.interface";
+import ISignUp from "../types/sign-up.interface";
 
 const SignUp = () => {
   const methods = useForm({
