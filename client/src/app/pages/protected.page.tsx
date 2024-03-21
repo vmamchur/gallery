@@ -5,7 +5,11 @@ const ProtectedPage = () => {
   return (
     <>
       <Header />
-      <FloatingButton variant="solid" />
+      <div className="flex gap-4">
+        <FloatingButton variant="solid" />
+        <FloatingButton variant="outline" />
+        <FloatingButton variant="ghost" />
+      </div>
     </>
   );
 };
