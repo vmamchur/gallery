@@ -1,24 +1,24 @@
-import { FormProvider, useForm } from "react-hook-form";
+import { useForm, FormProvider } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import AuthForm from "./auth-form.component";
 import Input from "@shared/components/input.component";
-import signInSchema from "../schemas/sign-in.schema";
-import { AuthRequest } from "src/app/api/types/auth.interface";
+import AuthForm from "./auth-form.component";
+import signUpSchema from "../schemas/sign-up.schema";
 import { useAppDispatch } from "src/app/store/hooks";
-import { authActions } from "src/app/store/slices/auth-slice";
+import { authActions } from "src/app/store/slices/auth.slice";
+import IAuthRequest from "@shared/types/auth/auth-request.interface";
 
-const SignIn = () => {
+const SignUpForm = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const methods = useForm({
     mode: "onTouched",
-    resolver: yupResolver(signInSchema),
+    resolver: yupResolver(signUpSchema),
   });
 
-  const onSubmit = async (authData: AuthRequest) => {
-    await dispatch(authActions.login(authData));
+  const onSubmit = async (data: IAuthRequest) => {
+    await dispatch(authActions.register(data));
     navigate("/");
   };
 
@@ -26,7 +26,7 @@ const SignIn = () => {
 
   return (
     <FormProvider {...methods}>
-      <AuthForm title="Sign In" onSubmit={methods.handleSubmit(onSubmit)}>
+      <AuthForm title="Sign Up" onSubmit={methods.handleSubmit(onSubmit)}>
         <Input
           label="Username"
           error={errors.username?.message}
@@ -39,9 +39,16 @@ const SignIn = () => {
           name="password"
           type="password"
         />
+
+        <Input
+          label="Confirm password"
+          error={errors.confirmPassword?.message}
+          name="confirmPassword"
+          type="password"
+        />
       </AuthForm>
     </FormProvider>
   );
 };
 
-export default SignIn;
+export default SignUpForm;

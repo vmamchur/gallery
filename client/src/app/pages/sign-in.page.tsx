@@ -1,13 +1,13 @@
 import Header from "@shared/components/header.component";
-import SignIn from "@features/auth/components/sign-in.component";
+import SignInForm from "@features/auth/components/sign-in-form.component";
 
-const SignInPage = () => {
+const SignIn = () => {
   return (
     <>
       <Header />
-      <SignIn />
+      <SignInForm />
     </>
   );
 };
 
-export default SignInPage;
+export default SignIn;

@@ -5,13 +5,13 @@ import {
   getAuthData,
   saveAuthData,
 } from "@shared/helpers/auth-storage";
-import IUser from "@shared/types/user.interface";
+import IAuthRequest from "@shared/types/auth/auth-request.interface";
+import IUser from "@shared/types/user/user.interface";
 import authService from "src/app/api/services/auth.service";
-import { AuthRequest } from "src/app/api/types/auth.interface";
 
 const register = createAsyncThunk(
   "auth/register",
-  async (registerData: AuthRequest) => {
+  async (registerData: IAuthRequest) => {
     try {
       const { user, accessToken, refreshToken } =
         await authService.register(registerData);
@@ -26,19 +26,22 @@ const register = createAsyncThunk(
   },
 );
 
-const login = createAsyncThunk("auth/login", async (loginData: AuthRequest) => {
-  try {
-    const { user, accessToken, refreshToken } =
-      await authService.login(loginData);
+const login = createAsyncThunk(
+  "auth/login",
+  async (loginData: IAuthRequest) => {
+    try {
+      const { user, accessToken, refreshToken } =
+        await authService.login(loginData);
 
-    saveAuthData(accessToken, refreshToken);
+      saveAuthData(accessToken, refreshToken);
 
-    return user;
-  } catch (error) {
-    console.log(error);
-    return null;
-  }
-});
+      return user;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  },
+);
 
 const logout = createAsyncThunk("auth/logout", async () => {
   try {
@@ -68,12 +71,12 @@ const refresh = createAsyncThunk("auth/refresh", async () => {
   }
 });
 
-interface AuthState {
+interface IAuthState {
   currentUser: IUser | null;
   isChecked: boolean;
 }
 
-const initialState: AuthState = {
+const initialState: IAuthState = {
   currentUser: null,
   isChecked: false,
 };
