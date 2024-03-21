@@ -5,9 +5,9 @@ import {
   getAuthData,
   saveAuthData,
 } from "@shared/helpers/auth-storage";
+import AuthRequest from "@shared/types/auth-request.interface";
 import IUser from "@shared/types/user.interface";
 import authService from "src/app/api/services/auth.service";
-import { AuthRequest } from "src/app/api/types/auth.interface";
 
 const register = createAsyncThunk(
   "auth/register",

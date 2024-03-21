@@ -1,5 +1,6 @@
 import { httpClient } from "../http-client";
-import { AuthRequest, AuthResponse } from "../types/auth.interface";
+import AuthRequest from "@shared/types/auth-request.interface";
+import AuthResponse from "@shared/types/auth-response.interface";
 
 const authService = {
   async register(registerData: AuthRequest): Promise<AuthResponse> {

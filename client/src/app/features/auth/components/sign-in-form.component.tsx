@@ -5,11 +5,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import AuthForm from "./auth-form.component";
 import Input from "@shared/components/input.component";
 import signInSchema from "../schemas/sign-in.schema";
-import { AuthRequest } from "src/app/api/types/auth.interface";
 import { useAppDispatch } from "src/app/store/hooks";
-import { authActions } from "src/app/store/slices/auth-slice";
+import { authActions } from "src/app/store/slices/auth.slice";
+import AuthRequest from "@shared/types/auth-request.interface";
 
-const SignIn = () => {
+const SignInForm = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const methods = useForm({
@@ -44,4 +44,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignInForm;

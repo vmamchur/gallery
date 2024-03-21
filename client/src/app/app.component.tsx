@@ -4,7 +4,7 @@ import router from "./app.routes";
 import Container from "@shared/components/container.component";
 import { useAppDispatch } from "./store/hooks";
 import { useEffect } from "react";
-import { authActions } from "./store/slices/auth-slice";
+import { authActions } from "./store/slices/auth.slice";
 
 const App = () => {
   const dispatch = useAppDispatch();

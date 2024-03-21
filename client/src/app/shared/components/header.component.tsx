@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Button from "./button.component";
 import Logo from "./logo.component";
 import { useAppDispatch, useAppSelector } from "src/app/store/hooks";
-import { authActions } from "src/app/store/slices/auth-slice";
+import { authActions } from "src/app/store/slices/auth.slice";
 
 const Header = () => {
   const { currentUser } = useAppSelector((state) => state.auth);
