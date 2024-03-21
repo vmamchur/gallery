@@ -1,6 +1,6 @@
 import IUser from "./user.interface";
 
-export default interface AuthResponse {
+export default interface IAuthResponse {
   user: IUser;
   accessToken: string;
   refreshToken: string;

@@ -7,7 +7,7 @@ import AuthForm from "./auth-form.component";
 import signUpSchema from "../schemas/sign-up.schema";
 import { useAppDispatch } from "src/app/store/hooks";
 import { authActions } from "src/app/store/slices/auth.slice";
-import AuthRequest from "@shared/types/auth-request.interface";
+import IAuthRequest from "@shared/types/auth-request.interface";
 
 const SignUpForm = () => {
   const dispatch = useAppDispatch();
@@ -17,7 +17,7 @@ const SignUpForm = () => {
     resolver: yupResolver(signUpSchema),
   });
 
-  const onSubmit = async (data: AuthRequest) => {
+  const onSubmit = async (data: IAuthRequest) => {
     await dispatch(authActions.register(data));
     navigate("/");
   };

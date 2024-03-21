@@ -1,15 +1,15 @@
 import { httpClient } from "../http-client";
-import AuthRequest from "@shared/types/auth-request.interface";
-import AuthResponse from "@shared/types/auth-response.interface";
+import IAuthRequest from "@shared/types/auth-request.interface";
+import IAuthResponse from "@shared/types/auth-response.interface";
 
 const authService = {
-  async register(registerData: AuthRequest): Promise<AuthResponse> {
+  async register(registerData: IAuthRequest): Promise<IAuthResponse> {
     const { data } = await httpClient.post("/auth/register", registerData);
 
     return data;
   },
 
-  async login(loginData: AuthRequest): Promise<AuthResponse> {
+  async login(loginData: IAuthRequest): Promise<IAuthResponse> {
     const { data } = await httpClient.post("/auth/login", loginData);
 
     return data;
@@ -21,7 +21,7 @@ const authService = {
     return data;
   },
 
-  async refresh(refreshToken: string): Promise<AuthResponse> {
+  async refresh(refreshToken: string): Promise<IAuthResponse> {
     const { data } = await httpClient.post("/auth/refresh", { refreshToken });
 
     return data;
