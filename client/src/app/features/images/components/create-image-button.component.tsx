@@ -1,9 +1,12 @@
 import { ChangeEvent, useRef } from "react";
 
 import FloatingButton from "@shared/components/floating-button.component";
-import imagesService from "src/app/api/services/images.service";
+import { useAppDispatch } from "src/app/store/hooks";
+import { imagesActions } from "src/app/store/slices/images.slice";
 
 const CreateImageButton = () => {
+  const dispatch = useAppDispatch();
+
   const uploadRef = useRef<HTMLInputElement>(null);
 
   const handleUploadClick = () => {
@@ -20,7 +23,7 @@ const CreateImageButton = () => {
     if (files) {
       const selectedFile = files[0];
 
-      await imagesService.create(selectedFile);
+      await dispatch(imagesActions.create(selectedFile));
     }
   };
 

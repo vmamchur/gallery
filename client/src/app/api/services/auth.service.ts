@@ -1,6 +1,6 @@
 import { httpClient } from "../http-client";
-import IAuthRequest from "@shared/types/auth-request.interface";
-import IAuthResponse from "@shared/types/auth-response.interface";
+import IAuthRequest from "@shared/types//auth/auth-request.interface";
+import IAuthResponse from "@shared/types/auth/auth-response.interface";
 
 const authService = {
   async register(registerData: IAuthRequest): Promise<IAuthResponse> {
@@ -16,9 +16,7 @@ const authService = {
   },
 
   async logout() {
-    const { data } = await httpClient.get("/auth/logout");
-
-    return data;
+    await httpClient.get("/auth/logout");
   },
 
   async refresh(refreshToken: string): Promise<IAuthResponse> {

@@ -5,8 +5,8 @@ import {
   getAuthData,
   saveAuthData,
 } from "@shared/helpers/auth-storage";
-import IAuthRequest from "@shared/types/auth-request.interface";
-import IUser from "@shared/types/user.interface";
+import IAuthRequest from "@shared/types/auth/auth-request.interface";
+import IUser from "@shared/types/user/user.interface";
 import authService from "src/app/api/services/auth.service";
 
 const register = createAsyncThunk(
@@ -71,12 +71,12 @@ const refresh = createAsyncThunk("auth/refresh", async () => {
   }
 });
 
-interface AuthState {
+interface IAuthState {
   currentUser: IUser | null;
   isChecked: boolean;
 }
 
-const initialState: AuthState = {
+const initialState: IAuthState = {
   currentUser: null,
   isChecked: false,
 };

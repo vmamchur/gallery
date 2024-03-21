@@ -7,7 +7,7 @@ import Input from "@shared/components/input.component";
 import signInSchema from "../schemas/sign-in.schema";
 import { useAppDispatch } from "src/app/store/hooks";
 import { authActions } from "src/app/store/slices/auth.slice";
-import IAuthRequest from "@shared/types/auth-request.interface";
+import IAuthRequest from "@shared/types/auth/auth-request.interface";
 
 const SignInForm = () => {
   const dispatch = useAppDispatch();
