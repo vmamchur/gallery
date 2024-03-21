@@ -7,9 +7,16 @@ type InputProps = {
   placeholder?: string;
   error?: string;
   name?: string;
+  type?: "text" | "password";
 };
 
-const Input: FC<InputProps> = ({ label, placeholder, error, name }) => {
+const Input: FC<InputProps> = ({
+  label,
+  placeholder,
+  error,
+  name,
+  type = "text",
+}) => {
   const { register } = useFormContext();
 
   return (
@@ -24,6 +31,7 @@ const Input: FC<InputProps> = ({ label, placeholder, error, name }) => {
           },
         )}
         placeholder={placeholder}
+        type={type}
         {...(name ? register(name) : {})}
       />
 

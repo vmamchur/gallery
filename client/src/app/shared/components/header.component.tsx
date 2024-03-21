@@ -2,8 +2,12 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import Button from "./button.component";
 import Logo from "./logo.component";
+import { useAppDispatch, useAppSelector } from "src/app/store/hooks";
+import { authActions } from "src/app/store/slices/auth-slice";
 
 const Header = () => {
+  const { currentUser } = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
@@ -16,21 +20,33 @@ const Header = () => {
       <div className="lg:max-w-7xl flex flex-grow items-center justify-between">
         <Logo />
         <div className="flex gap-2 lg:gap-4">
-          <Button
-            variant={getButtonVariant("/sign-in")}
-            onClick={() => navigate("/sign-in")}
-            size="m"
-          >
-            Sign In
-          </Button>
+          {currentUser ? (
+            <Button
+              variant="solid"
+              onClick={() => dispatch(authActions.logout())}
+              size="m"
+            >
+              Logout
+            </Button>
+          ) : (
+            <>
+              <Button
+                variant={getButtonVariant("/sign-in")}
+                onClick={() => navigate("/sign-in")}
+                size="m"
+              >
+                Sign In
+              </Button>
 
-          <Button
-            variant={getButtonVariant("/sign-up")}
-            onClick={() => navigate("/sign-up")}
-            size="m"
-          >
-            Sign Up
-          </Button>
+              <Button
+                variant={getButtonVariant("/sign-up")}
+                onClick={() => navigate("/sign-up")}
+                size="m"
+              >
+                Sign Up
+              </Button>
+            </>
+          )}
         </div>
       </div>
     </header>
