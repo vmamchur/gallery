@@ -1,7 +1,8 @@
 import { Request } from "express";
+import { randomUUID } from "crypto";
 import { extname } from "path";
 
-export const imageFileFilter = (req: Request, file: Express.Multer.File, callback: any) => {
+export const filterImageFile = (_req: Request, file: Express.Multer.File, callback: any) => {
   if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
     return callback(new Error('Only image files are allowed!'), false);
   }
@@ -10,12 +11,8 @@ export const imageFileFilter = (req: Request, file: Express.Multer.File, callbac
 }
 
 export const editFileName = (req: Request, file: Express.Multer.File, callback: any) => {
-  const name = file.originalname.split('.')[0];
   const fileExtName = extname(file.originalname);
-  const randomName = Array(4)
-    .fill(null)
-    .map(() => Math.round(Math.random() * 16).toString(16))
-    .join('');
+  const randomName = randomUUID(); 
 
-  callback(null, `${name}-${randomName}${fileExtName}`);
+  callback(null, `${randomName}${fileExtName}`);
 }

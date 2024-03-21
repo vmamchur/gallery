@@ -1,4 +1,8 @@
-import { BadRequestException, ForbiddenException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  ForbiddenException,
+  Injectable,
+} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import * as argon2 from 'argon2';
 
@@ -13,7 +17,9 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
   async register(createUserDto: CreateUserDto) {
-    const userExists = await this.usersService.findByUsername(createUserDto.username);
+    const userExists = await this.usersService.findByUsername(
+      createUserDto.username,
+    );
 
     if (userExists) {
       throw new BadRequestException('User already exists');
@@ -24,13 +30,20 @@ export class AuthService {
       ...createUserDto,
       password: hashedPassword,
     });
-    const tokens = await this.getTokens(createdUser._id, createdUser.username);
+    const { accessToken, refreshToken } = await this.getTokens(
+      createdUser._id,
+      createdUser.username,
+    );
 
     await this.usersService.update(createdUser._id, {
-      refreshToken: tokens.refreshToken,
+      refreshToken: refreshToken,
     });
 
-    return tokens;
+    return {
+      user: this.usersService.normalizeUser(createdUser),
+      accessToken,
+      refreshToken,
+    };
   }
 
   async login(authDto: AuthDto) {
@@ -40,19 +53,29 @@ export class AuthService {
       throw new BadRequestException('User does not exist');
     }
 
-    const passwordMatches = await argon2.verify(user.password, authDto.password);
+    const passwordMatches = await argon2.verify(
+      user.password,
+      authDto.password,
+    );
 
     if (!passwordMatches) {
       throw new BadRequestException('Password is incorrect');
     }
 
-    const tokens = await this.getTokens(user._id, user.username);
+    const { accessToken, refreshToken } = await this.getTokens(
+      user._id,
+      user.username,
+    );
 
     await this.usersService.update(user._id, {
-      refreshToken: tokens.refreshToken,
+      refreshToken,
     });
 
-    return tokens;
+    return {
+      user: this.usersService.normalizeUser(user),
+      accessToken,
+      refreshToken,
+    };
   }
 
   async logout(userId: string) {
@@ -74,7 +97,7 @@ export class AuthService {
     const refreshToken = await this.jwtService.signAsync(
       {
         sub: userId,
-        username, 
+        username,
       },
       {
         secret: process.env.JWT_REFRESH_SECRET,
@@ -88,8 +111,8 @@ export class AuthService {
     };
   }
 
-  async refreshTokens(userId: string, refreshToken: string) {
-    const user = await this.usersService.findById(userId);
+  async refreshTokens(refreshToken: string) {
+    const user = await this.usersService.findByRefreshToken(refreshToken);
 
     if (!user || !user.refreshToken) {
       throw new ForbiddenException('Access denied');
@@ -99,12 +122,17 @@ export class AuthService {
       throw new ForbiddenException('Access denied');
     }
 
-    const tokens = await this.getTokens(user._id, user.username);
+    const { accessToken, refreshToken: createdRefreshToken } =
+      await this.getTokens(user._id, user.username);
 
     await this.usersService.update(user._id, {
-      refreshToken: tokens.refreshToken,
+      refreshToken: createdRefreshToken,
     });
 
-    return tokens;
+    return {
+      user: this.usersService.normalizeUser(user),
+      accessToken,
+      refreshToken: createdRefreshToken,
+    };
   }
 }
