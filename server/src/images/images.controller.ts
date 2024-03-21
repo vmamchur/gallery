@@ -5,7 +5,7 @@ import { Response } from 'express';
 
 import { ImagesService } from './images.service';
 import { UpdateImageDto } from './dto/update-image.dto';
-import { editFileName, imageFileFilter } from 'src/utils/file-uploading.utils';
+import { editFileName, filterImageFile } from 'src/utils/file-uploading.utils';
 import { CreateImageDto } from './dto/create-image.dto';
 import { AccessTokenGuard } from 'src/common/guards/access-token.guard';
 import { RequestWithUser } from 'src/common/interfaces/request-with-user.interface';
@@ -21,11 +21,14 @@ export class ImagesController {
       destination: './uploads',
       filename: editFileName,
     }),
-    fileFilter: imageFileFilter,
+    fileFilter: filterImageFile,
   }))
   create(@Body() createImageDto: CreateImageDto, @UploadedFile() file: Express.Multer.File, @Req() req: RequestWithUser) {
-    createImageDto.userId = req.user.userId;
-    createImageDto.filename = file.filename;
+    const { userId } = req.user;
+    const { filename } = file;
+
+    createImageDto.userId = userId;
+    createImageDto.filename = filename;
 
     return this.imagesService.create(createImageDto);
   }

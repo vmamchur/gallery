@@ -5,6 +5,7 @@ import { Model } from 'mongoose';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User, UserDocument } from './schemas/user.schema';
+import NormalizedUser from './interfaces/normalized-user.interface';
 
 @Injectable()
 export class UsersService {
@@ -28,15 +29,25 @@ export class UsersService {
     return this.userModel.findOne({ username });
   }
 
+  async findByRefreshToken(refreshToken: string): Promise<UserDocument | null> {
+    return this.userModel.findOne({ refreshToken });
+  }
+
   async update(
     id: string,
     updateUserDto: UpdateUserDto,
   ): Promise<UserDocument | null> {
-    return this.userModel
-      .findByIdAndUpdate(id, updateUserDto, { new: true });
+    return this.userModel.findByIdAndUpdate(id, updateUserDto, { new: true });
   }
 
   async remove(id: string): Promise<UserDocument | null> {
     return this.userModel.findByIdAndDelete(id);
+  }
+
+  normalizeUser(user: UserDocument): NormalizedUser {
+    return {
+      _id: user._id,
+      username: user.username,
+    };
   }
 }

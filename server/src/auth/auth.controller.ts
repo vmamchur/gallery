@@ -4,7 +4,6 @@ import { AuthDto } from './dto/auth.dto';
 import { AuthService } from './auth.service';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { AccessTokenGuard } from 'src/common/guards/access-token.guard';
-import { RefreshTokenGuard } from 'src/common/guards/refresh-token.guard';
 import { RequestWithUser } from 'src/common/interfaces/request-with-user.interface';
 
 @Controller('auth')
@@ -29,11 +28,8 @@ export class AuthController {
     return this.authService.logout(userId);
   }
 
-  @UseGuards(RefreshTokenGuard)
   @Post('refresh')
-  refreshTokens(@Req() req: RequestWithUser) {
-    const { userId, refreshToken } = req.user;
-
-    return this.authService.refreshTokens(userId, refreshToken);
+  refreshTokens(@Body() { refreshToken }: { refreshToken: string }) {
+    return this.authService.refreshTokens(refreshToken);
   }
 }

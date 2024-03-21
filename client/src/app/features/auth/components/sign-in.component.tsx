@@ -1,19 +1,28 @@
 import { FormProvider, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import AuthForm from "./auth-form.component";
 import Input from "@shared/components/input.component";
 import signInSchema from "../schemas/sign-in.schema";
-import { ISignIn } from "../types/sign-in.interface";
+import { AuthRequest } from "src/app/api/types/auth.interface";
+import { useAppDispatch } from "src/app/store/hooks";
+import { authActions } from "src/app/store/slices/auth-slice";
 
 const SignIn = () => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const methods = useForm({
     mode: "onTouched",
     resolver: yupResolver(signInSchema),
   });
-  const { errors } = methods.formState;
 
-  const onSubmit = (data: ISignIn) => console.log(data);
+  const onSubmit = async (authData: AuthRequest) => {
+    await dispatch(authActions.login(authData));
+    navigate("/");
+  };
+
+  const { errors } = methods.formState;
 
   return (
     <FormProvider {...methods}>
@@ -28,6 +37,7 @@ const SignIn = () => {
           label="Password"
           error={errors.password?.message}
           name="password"
+          type="password"
         />
       </AuthForm>
     </FormProvider>
