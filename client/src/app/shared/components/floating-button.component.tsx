@@ -4,9 +4,9 @@ import classNames from "classnames";
 import Icon from "./icon.component";
 
 const BUTTON_VARIANT = {
-  solid: "border-black bg-black text-white",
-  outline: "border-black text-black",
-  ghost: "border-transparent text-black",
+  solid: "border-black bg-black",
+  outline: "border-black",
+  ghost: "border-transparent shadow shadow-primary-400",
 };
 
 const ICON_COLOR = {
@@ -29,7 +29,7 @@ const FloatingButton: FC<FloatingButtonProps> = ({
   return (
     <button
       className={classNames(
-        "h-14 w-14 rounded-full flex justify-center items-center border-[3px] shadow shadow-primary-400 disabled:opacity-50 disabled:cursor-not-allowed",
+        "h-16 w-16 rounded-full flex justify-center items-center border-[3px] disabled:opacity-50 disabled:cursor-not-allowed",
         BUTTON_VARIANT[variant],
       )}
       onClick={onClick}

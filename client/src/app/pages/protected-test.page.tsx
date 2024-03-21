@@ -1,7 +1,7 @@
 import FloatingButton from "@shared/components/floating-button.component";
 import Header from "@shared/components/header.component";
 
-const ProtectedPage = () => {
+const ProtectedTest = () => {
   return (
     <>
       <Header />
@@ -14,4 +14,4 @@ const ProtectedPage = () => {
   );
 };
 
-export default ProtectedPage;
+export default ProtectedTest;

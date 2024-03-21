@@ -1,24 +1,29 @@
 import { createBrowserRouter } from "react-router-dom";
 
-import SignUpPage from "./pages/sign-up.page";
-import SignInPage from "./pages/sign-in.page";
 import RequireAuth from "@shared/components/require-auth.component";
-import ProtectedPage from "./pages/protected.page";
+import Gallery from "./pages/gallery.page";
+import ProtectedTest from "./pages/protected-test.page";
+import SignIn from "./pages/sign-in.page";
+import SignUp from "./pages/sign-up.page";
 
 const router = createBrowserRouter([
   {
     path: "/sign-up",
-    element: <SignUpPage />,
+    element: <SignUp />,
   },
   {
     path: "/sign-in",
-    element: <SignInPage />,
+    element: <SignIn />,
   },
   {
     path: "/",
+    element: <Gallery />,
+  },
+  {
+    path: "/protected",
     element: (
       <RequireAuth>
-        <ProtectedPage />
+        <ProtectedTest />
       </RequireAuth>
     ),
   },
