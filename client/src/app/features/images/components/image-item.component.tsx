@@ -1,14 +1,14 @@
 import { FC } from "react";
 
-import { IMAGES_URL } from "@shared/constants/main";
 import IImage from "@shared/types/image/image.interface";
+import generateImageUrl from "@shared/helpers/generate-image-url";
 
 type ImageItemProps = {
   image: IImage;
 };
 
 const ImageItem: FC<ImageItemProps> = ({ image }) => {
-  return <img className="rounded" src={`${IMAGES_URL}${image.filename}`} />;
+  return <img className="rounded" src={generateImageUrl(image.filename)} />;
 };
 
 export default ImageItem;
