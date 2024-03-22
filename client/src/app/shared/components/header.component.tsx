@@ -17,7 +17,7 @@ const Header = () => {
 
   return (
     <header className="absolute top-0 left-0 h-14 w-full px-4 lg:px-8 flex items-center justify-center shadow-xl">
-      <div className="lg:max-w-screen-2xl flex flex-grow items-center justify-between">
+      <div className="flex flex-grow items-center justify-between">
         <Logo />
         <div className="flex gap-2 lg:gap-4">
           {currentUser ? (
