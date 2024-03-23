@@ -5,11 +5,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Input from "@shared/components/input.component";
 import AuthForm from "./auth-form.component";
 import signUpSchema from "../schemas/sign-up.schema";
-import { useAppDispatch } from "src/app/store/hooks";
+import { useAppDispatch, useAppSelector } from "src/app/store/hooks";
 import { authActions } from "src/app/store/slices/auth.slice";
 import IAuthRequest from "@shared/types/auth/auth-request.interface";
 
 const SignUpForm = () => {
+  const { isLoggedIn } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const methods = useForm({
@@ -19,7 +20,10 @@ const SignUpForm = () => {
 
   const onSubmit = async (data: IAuthRequest) => {
     await dispatch(authActions.register(data));
-    navigate("/");
+
+    if (isLoggedIn) {
+      navigate("/");
+    }
   };
 
   const { errors } = methods.formState;
