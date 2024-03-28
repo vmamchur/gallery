@@ -1,7 +1,7 @@
 import { FC } from "react";
 import classNames from "classnames";
 
-import Icon from "./icon.component";
+import PlusIcon from "../../../assets/icons/plus.svg?react";
 
 const BUTTON_VARIANT = {
   solid: "border-black bg-black",
@@ -35,7 +35,7 @@ const FloatingButton: FC<FloatingButtonProps> = ({
       onClick={onClick}
       disabled={disabled}
     >
-      <Icon name="plus" width={24} height={24} fill={ICON_COLOR[variant]} />
+      <PlusIcon fill={ICON_COLOR[variant]} />
     </button>
   );
 };

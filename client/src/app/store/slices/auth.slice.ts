@@ -74,11 +74,13 @@ const refresh = createAsyncThunk("auth/refresh", async () => {
 interface IAuthState {
   currentUser: IUser | null;
   isChecked: boolean;
+  isLoggedIn: boolean;
 }
 
 const initialState: IAuthState = {
   currentUser: null,
   isChecked: false,
+  isLoggedIn: false,
 };
 
 const authSlice = createSlice({
@@ -88,13 +90,16 @@ const authSlice = createSlice({
   extraReducers(builder) {
     builder.addCase(register.fulfilled, (state, action) => {
       state.currentUser = action.payload;
+      state.isLoggedIn = true;
     });
     builder.addCase(login.fulfilled, (state, action) => {
       state.currentUser = action.payload;
+      state.isLoggedIn = true;
     });
     builder.addCase(refresh.fulfilled, (state, action) => {
       state.currentUser = action.payload;
       state.isChecked = true;
+      state.isLoggedIn = true;
     });
     builder.addCase(refresh.rejected, (state) => {
       state.currentUser = null;
@@ -102,6 +107,7 @@ const authSlice = createSlice({
     });
     builder.addCase(logout.fulfilled, (state) => {
       state.currentUser = null;
+      state.isLoggedIn = false;
     });
   },
 });

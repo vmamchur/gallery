@@ -1,12 +1,7 @@
-import Icon from "./icon.component";
+import ImageIcon from "../../../assets/icons/image-placeholder.svg?react";
 
 const Logo = () => {
-  return (
-    <div className="flex items-center gap-2">
-      <Icon name="camera" width={48} height={48} />
-      <h1 className="text-header-3">Gallery</h1>
-    </div>
-  );
+  return <ImageIcon width={48} height={48} />;
 };
 
 export default Logo;
