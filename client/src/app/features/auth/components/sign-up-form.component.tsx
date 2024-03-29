@@ -8,9 +8,10 @@ import signUpSchema from "../schemas/sign-up.schema";
 import { useAppDispatch, useAppSelector } from "src/app/store/hooks";
 import { authActions } from "src/app/store/slices/auth.slice";
 import IAuthRequest from "@shared/types/auth/auth-request.interface";
+import { useEffect } from "react";
 
 const SignUpForm = () => {
-  const { isLoggedIn } = useAppSelector((state) => state.auth);
+  const { currentUser } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const methods = useForm({
@@ -20,11 +21,13 @@ const SignUpForm = () => {
 
   const onSubmit = async (data: IAuthRequest) => {
     await dispatch(authActions.register(data));
+  };
 
-    if (isLoggedIn) {
+  useEffect(() => {
+    if (currentUser) {
       navigate("/");
     }
-  };
+  }, [currentUser, navigate]);
 
   const { errors } = methods.formState;
 
