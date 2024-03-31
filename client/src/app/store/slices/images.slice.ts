@@ -15,14 +15,22 @@ const getAll = createAsyncThunk("images/getAll", async () => {
   return images;
 });
 
+const remove = createAsyncThunk("images/remove", async (id: string) => {
+  const { id: imageId } = await imagesService.remove(id);
+
+  return imageId;
+});
+
 interface IImagesState {
   images: IImage[];
   selectedImage: IImage | null;
+  isLoading: boolean;
 }
 
 const initialState: IImagesState = {
   images: [],
   selectedImage: null,
+  isLoading: false,
 };
 
 const imagesSlice = createSlice({
@@ -37,8 +45,20 @@ const imagesSlice = createSlice({
     builder.addCase(create.fulfilled, (state, action) => {
       state.images = [...state.images, action.payload];
     });
+
+    builder.addCase(getAll.pending, (state) => {
+      state.isLoading = true;
+    });
+
     builder.addCase(getAll.fulfilled, (state, action) => {
       state.images = action.payload;
+      state.isLoading = false;
+    });
+
+    builder.addCase(remove.fulfilled, (state, action) => {
+      state.images = state.images.filter(
+        (image) => image.id !== action.payload,
+      );
     });
   },
 });
@@ -46,6 +66,7 @@ const imagesSlice = createSlice({
 export const imagesActions = {
   create,
   getAll,
+  remove,
   selectImage: imagesSlice.actions.selectImage,
 };
 export default imagesSlice.reducer;

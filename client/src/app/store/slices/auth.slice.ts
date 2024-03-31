@@ -89,17 +89,21 @@ const authSlice = createSlice({
     builder.addCase(register.fulfilled, (state, action) => {
       state.currentUser = action.payload;
     });
+
     builder.addCase(login.fulfilled, (state, action) => {
       state.currentUser = action.payload;
     });
+
     builder.addCase(refresh.fulfilled, (state, action) => {
       state.currentUser = action.payload;
       state.isChecked = true;
     });
+
     builder.addCase(refresh.rejected, (state) => {
       state.currentUser = null;
       state.isChecked = true;
     });
+
     builder.addCase(logout.fulfilled, (state) => {
       state.currentUser = null;
     });

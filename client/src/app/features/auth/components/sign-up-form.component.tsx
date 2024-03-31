@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -8,7 +9,6 @@ import signUpSchema from "../schemas/sign-up.schema";
 import { useAppDispatch, useAppSelector } from "src/app/store/hooks";
 import { authActions } from "src/app/store/slices/auth.slice";
 import IAuthRequest from "@shared/types/auth/auth-request.interface";
-import { useEffect } from "react";
 
 const SignUpForm = () => {
   const { currentUser } = useAppSelector((state) => state.auth);
@@ -20,7 +20,12 @@ const SignUpForm = () => {
   });
 
   const onSubmit = async (data: IAuthRequest) => {
-    await dispatch(authActions.register(data));
+    const registerData = {
+      username: data.username,
+      password: data.password,
+    };
+
+    await dispatch(authActions.register(registerData));
   };
 
   useEffect(() => {

@@ -17,6 +17,12 @@ const imagesService = {
 
     return data;
   },
+
+  async remove(id: string) {
+    const { data } = await httpClient.delete(`${API_URL}/images/${id}`);
+
+    return data;
+  },
 };
 
 export default imagesService;

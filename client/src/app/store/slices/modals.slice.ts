@@ -16,6 +16,7 @@ const modalsSlice = createSlice({
     openModal: (state, action) => {
       state.activeModalName = action.payload as EModalName;
     },
+
     closeModal: (state) => {
       state.activeModalName = "";
     },

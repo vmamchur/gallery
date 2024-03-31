@@ -1,4 +1,10 @@
+import IUser from "../user/user.interface";
+
 export default interface IImage {
-  _id: string;
+  id: string;
+  author: IUser;
+  authorId: string;
+  name: string;
+  description?: string;
   filename: string;
 }
