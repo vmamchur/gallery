@@ -1,4 +1,6 @@
 export class CreateImageDto {
-  userId: string;
+  name: string;
+  authorId: string;
+  description?: string;
   filename: string;
 }
