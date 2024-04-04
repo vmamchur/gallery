@@ -6,7 +6,7 @@ const Header = () => {
   const { isChecked } = useAppSelector((state) => state.auth);
 
   return (
-    <header className="absolute top-0 left-0 h-14 w-full px-4 lg:px-8 flex items-center justify-center border-b-2 border-b-black">
+    <header className="h-14 w-full px-4 lg:px-8 flex items-center justify-center border-b-2 border-b-black">
       <div className="flex flex-grow items-center justify-between">
         <Logo />
         {isChecked && <AuthButtons />}

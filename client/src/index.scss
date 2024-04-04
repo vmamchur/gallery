@@ -7,4 +7,8 @@
     font-family: "Patrick Hand";
     src: url(./assets/fonts/PatrickHand-Regular.ttf);
   }
+
+  .h-container {
+    min-height: calc(100vh - 72px);
+  }
 }
