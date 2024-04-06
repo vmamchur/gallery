@@ -16,7 +16,7 @@ const BUTTON_SIZE = {
 type ButtonProps = PropsWithChildren<{
   variant: keyof typeof BUTTON_VARIANT;
   size: keyof typeof BUTTON_SIZE;
-  onClick: () => void;
+  onClick?: () => void;
   type?: "button" | "submit" | "reset";
   disabled?: boolean;
 }>;

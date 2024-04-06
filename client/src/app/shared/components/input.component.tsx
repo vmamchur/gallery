@@ -17,7 +17,7 @@ const Input: FC<InputProps> = ({
   name,
   type = "text",
 }) => {
-  const { register } = useFormContext();
+  const { register } = useFormContext() || {};
 
   return (
     <label className="flex flex-col">
