@@ -10,7 +10,7 @@ type AuthFormProps = PropsWithChildren<{
 const AuthForm: FC<AuthFormProps> = ({ title, onSubmit, children }) => {
   return (
     <form
-      className="h-screen w-full lg:w-1/3 mx-auto flex flex-col justify-center gap-2"
+      className="h-container w-full lg:w-1/3 mx-auto flex flex-col justify-center gap-2"
       onSubmit={onSubmit}
     >
       <h2 className="self-center text-header-2 lg:text-header-1">{title}</h2>

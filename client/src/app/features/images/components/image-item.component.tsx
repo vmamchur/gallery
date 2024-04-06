@@ -21,7 +21,7 @@ const ImageItem: FC<ImageItemProps> = ({ image }) => {
 
   return (
     <img
-      className="rounded"
+      className="rounded cursor-pointer" 
       src={generateImageUrl(image.filename)}
       onClick={handleImageItemClick}
     />

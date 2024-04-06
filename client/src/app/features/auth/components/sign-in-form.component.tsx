@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -10,7 +11,7 @@ import { authActions } from "src/app/store/slices/auth.slice";
 import IAuthRequest from "@shared/types/auth/auth-request.interface";
 
 const SignInForm = () => {
-  const { isLoggedIn } = useAppSelector((state) => state.auth);
+  const { currentUser } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const methods = useForm({
@@ -20,11 +21,13 @@ const SignInForm = () => {
 
   const onSubmit = async (loginData: IAuthRequest) => {
     await dispatch(authActions.login(loginData));
+  };
 
-    if (isLoggedIn) {
+  useEffect(() => {
+    if (currentUser) {
       navigate("/");
     }
-  };
+  }, [currentUser, navigate]);
 
   const { errors } = methods.formState;
 

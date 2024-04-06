@@ -26,21 +26,21 @@ export class AuthService {
     }
 
     const hashedPassword = await argon2.hash(createUserDto.password);
-    const createdUser = await this.usersService.create({
+    const user = await this.usersService.create({
       ...createUserDto,
       password: hashedPassword,
     });
     const { accessToken, refreshToken } = await this.getTokens(
-      createdUser._id,
-      createdUser.username,
+      user.id,
+      user.username,
     );
 
-    await this.usersService.update(createdUser._id, {
-      refreshToken: refreshToken,
+    await this.usersService.update(user.id, {
+      refreshToken,
     });
 
     return {
-      user: this.usersService.normalizeUser(createdUser),
+      user,
       accessToken,
       refreshToken,
     };
@@ -63,16 +63,16 @@ export class AuthService {
     }
 
     const { accessToken, refreshToken } = await this.getTokens(
-      user._id,
+      user.id,
       user.username,
     );
 
-    await this.usersService.update(user._id, {
+    await this.usersService.update(user.id, {
       refreshToken,
     });
 
     return {
-      user: this.usersService.normalizeUser(user),
+      user,
       accessToken,
       refreshToken,
     };
@@ -123,14 +123,14 @@ export class AuthService {
     }
 
     const { accessToken, refreshToken: createdRefreshToken } =
-      await this.getTokens(user._id, user.username);
+      await this.getTokens(user.id, user.username);
 
-    await this.usersService.update(user._id, {
+    await this.usersService.update(user.id, {
       refreshToken: createdRefreshToken,
     });
 
     return {
-      user: this.usersService.normalizeUser(user),
+      user,
       accessToken,
       refreshToken: createdRefreshToken,
     };
