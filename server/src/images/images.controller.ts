@@ -47,10 +47,6 @@ export class ImagesController {
     createImageDto.authorId = userId;
     createImageDto.filename = filename;
 
-    // temp
-    createImageDto.name = 'img';
-    // ---
-
     return this.imagesService.create(createImageDto);
   }
 

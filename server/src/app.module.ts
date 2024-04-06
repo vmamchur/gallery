@@ -12,11 +12,11 @@ import { PrismaModule } from './prisma/prisma.module';
 @Module({
   imports: [
     ConfigModule.forRoot(),
+    PrismaModule,
     MulterModule.register({ dest: process.env.UPLOAD_PATH }),
     UsersModule,
     AuthModule,
     ImagesModule,
-    PrismaModule,
   ],
   controllers: [AppController],
   providers: [AppService],
