@@ -5,6 +5,7 @@ import Gallery from "./pages/gallery.page";
 import ProtectedTest from "./pages/protected-test.page";
 import SignIn from "./pages/sign-in.page";
 import SignUp from "./pages/sign-up.page";
+import CreateImage from "./pages/create-image.page";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,14 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Gallery />,
+  },
+  {
+    path: "/create-image",
+    element: (
+      <RequireAuth>
+        <CreateImage />
+      </RequireAuth>
+    ),
   },
   {
     path: "/protected",

@@ -1,10 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
+import ICreateImage from "@shared/types/image/create-image.interface";
 import IImage from "@shared/types/image/image.interface";
 import imagesService from "src/app/api/services/images.service";
 
-const create = createAsyncThunk("images/create", async (file: File) => {
-  const createdImage = await imagesService.create(file);
+const create = createAsyncThunk("images/create", async (createImageData: ICreateImage) => {
+  const createdImage = await imagesService.create(createImageData);
 
   return createdImage;
 });
