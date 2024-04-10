@@ -1,5 +1,5 @@
-import { IMAGES_URL } from "@shared/constants/main";
+import { API_URL } from "@shared/constants/main";
 
 export default function generateImageUrl(filename: string) {
-  return `${IMAGES_URL}/${filename}`;
+  return `${API_URL}/images/${filename}`;
 }
