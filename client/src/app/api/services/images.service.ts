@@ -7,7 +7,7 @@ const imagesService = {
   async create({ image, name, description }: ICreateImage): Promise<IImage> {
     const body = new FormData();
 
-    body.append("file", image);
+    body.append("file", image as Blob);
     body.append("name", name);
 
     if (description) {
