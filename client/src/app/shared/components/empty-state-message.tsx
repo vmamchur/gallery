@@ -6,7 +6,7 @@ type EmptyStateMessageProps = {
 
 const EmptyStateMessage: FC<EmptyStateMessageProps> = ({ message }) => {
   return (
-    <div className="h-screen flex flex-col justify-center items-center text-primary-500 text-display">
+    <div className="h-container flex flex-col justify-center items-center text-primary-500 text-display">
       <p>{message}</p>
     </div>
   );

@@ -26,12 +26,14 @@ interface IImagesState {
   images: IImage[];
   selectedImage: IImage | null;
   isLoading: boolean;
+  isUploading: boolean;
 }
 
 const initialState: IImagesState = {
   images: [],
   selectedImage: null,
   isLoading: false,
+  isUploading: false,
 };
 
 const imagesSlice = createSlice({
@@ -43,8 +45,17 @@ const imagesSlice = createSlice({
     },
   },
   extraReducers(builder) {
+    builder.addCase(create.pending, (state) => {
+      state.isUploading = true;
+    });
+
     builder.addCase(create.fulfilled, (state, action) => {
       state.images = [...state.images, action.payload];
+      state.isUploading = false;
+    });
+
+    builder.addCase(create.rejected, (state) => {
+      state.isUploading = false;
     });
 
     builder.addCase(getAll.pending, (state) => {

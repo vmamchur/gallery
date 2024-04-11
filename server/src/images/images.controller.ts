@@ -60,8 +60,11 @@ export class ImagesController {
     return res.sendFile(filename, { root: process.env.UPLOAD_PATH });
   }
 
+  @UseGuards(AccessTokenGuard)
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.imagesService.remove(id);
+  remove(@Param('id') id: string, @Req() req: RequestWithUser) {
+    const { userId } = req.user;
+
+    return this.imagesService.remove(id, userId);
   }
 }

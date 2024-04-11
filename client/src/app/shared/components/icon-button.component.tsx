@@ -23,7 +23,7 @@ type IconButtonProps = {
   variant: keyof typeof BUTTON_VARIANT;
   size: keyof typeof BUTTON_SIZE;
   onClick: () => void;
-  disabled?: boolean;
+  isDisabled?: boolean;
   Icon: FC<{ fill?: string }>;
 };
 
@@ -31,7 +31,7 @@ const IconButton: FC<IconButtonProps> = ({
   variant,
   size,
   onClick,
-  disabled,
+  isDisabled,
   Icon,
 }) => {
   return (
@@ -42,7 +42,7 @@ const IconButton: FC<IconButtonProps> = ({
         BUTTON_SIZE[size],
       )}
       onClick={onClick}
-      disabled={disabled}
+      disabled={isDisabled}
     >
       <Icon fill={ICON_COLOR[variant]} />
     </button>

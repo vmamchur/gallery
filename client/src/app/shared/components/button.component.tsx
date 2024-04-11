@@ -18,7 +18,8 @@ type ButtonProps = PropsWithChildren<{
   size: keyof typeof BUTTON_SIZE;
   onClick?: () => void;
   type?: "button" | "submit" | "reset";
-  disabled?: boolean;
+  isDisabled?: boolean;
+  isLoading?: boolean; 
 }>;
 
 const Button: FC<ButtonProps> = ({
@@ -26,7 +27,8 @@ const Button: FC<ButtonProps> = ({
   size,
   onClick,
   type = "button",
-  disabled = false,
+  isDisabled = false,
+  isLoading = false,
   children,
 }) => {
   return (
@@ -38,9 +40,9 @@ const Button: FC<ButtonProps> = ({
       )}
       onClick={onClick}
       type={type}
-      disabled={disabled}
+      disabled={isDisabled || isLoading}
     >
-      {children}
+      {isLoading ? 'Loading...' : children}
     </button>
   );
 };

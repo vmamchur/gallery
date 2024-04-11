@@ -18,13 +18,13 @@ const ICON_COLOR = {
 type FloatingButtonProps = {
   variant: keyof typeof BUTTON_VARIANT;
   onClick?: () => void;
-  disabled?: boolean;
+  isDisabled?: boolean;
 };
 
 const FloatingButton: FC<FloatingButtonProps> = ({
   variant,
   onClick,
-  disabled = false,
+  isDisabled = false,
 }) => {
   return (
     <button
@@ -33,7 +33,7 @@ const FloatingButton: FC<FloatingButtonProps> = ({
         BUTTON_VARIANT[variant],
       )}
       onClick={onClick}
-      disabled={disabled}
+      disabled={isDisabled}
     >
       <PlusIcon fill={ICON_COLOR[variant]} />
     </button>

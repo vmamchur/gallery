@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 
 import { CreateImageDto } from './dto/create-image.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
@@ -25,7 +25,15 @@ export class ImagesService {
     return this.prisma.image.findUnique({ where: { id } });
   }
 
-  remove(id: string) {
+  async remove(id: string, authorId: string) {
+    const image = await this.prisma.image.findUnique({
+      where: { id, authorId },
+    });
+
+    if (!image) {
+      throw new NotFoundException('Image not found');
+    }
+
     return this.prisma.image.delete({ where: { id } });
   }
 }
