@@ -10,7 +10,6 @@ const CreateImageButton = () => {
   return (
     <div className="fixed right-5 bottom-5">
       <FloatingButton variant="solid" onClick={() => navigate('/create-image')} />
-
     </div>
   );
 };
