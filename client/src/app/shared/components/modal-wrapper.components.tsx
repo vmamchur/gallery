@@ -20,7 +20,7 @@ const ModalWrapper: FC<ModalWrapperProps> = ({ children, isOpen }) => {
 
   return (
     <div
-      className="min-h-screen absolute top-0 right-0 left-0 overflow-y-auto bg-black bg-opacity-50 flex justify-center items-center"
+      className="min-h-screen absolute top-0 right-0 left-0 z-10 overflow-y-auto bg-black bg-opacity-50 flex justify-center items-center"
       onClick={handleClose}
     >
       <div
