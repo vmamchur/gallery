@@ -4,7 +4,7 @@ import TelegramIcon from "../../../assets/icons/telegram.svg?react";
 
 const SocialLinksOverlay = () => {
   return (
-    <div className="py-1 px-2 flex items-center justify-center gap-2 fixed bottom-0 left-0 border-t-2 border-r-2 border-black rounded-tr-md">
+    <div className="py-1 px-2 flex items-center justify-center gap-2 fixed bottom-0 left-0 border-t-2 border-r-2 border-black rounded-tr-md bg-white">
       <span>Connect with me!</span>
       <a href="https://www.linkedin.com/in/vadym-mamchur" target="_blank">
         <LinkedInIcon />

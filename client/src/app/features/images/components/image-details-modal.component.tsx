@@ -48,7 +48,7 @@ const ImageDetailsModal = () => {
 
         <div className="flex justify-center">
           <img
-            className="w-min max-h-[800px]"
+            className="w-min max-h-[600px]"
             src={generateImageUrl(selectedImage.filename)}
           />
         </div>
