@@ -25,7 +25,6 @@
 * Passport
 * JWT
 * Multer
-* Swagger
 
 ### Deployment
 * AWS EC2
