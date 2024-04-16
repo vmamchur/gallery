@@ -62,12 +62,21 @@ const CreateImageForm = () => {
     }
   };
 
+  const handleResetImagePreview = () => {
+    setImagePreviewUrl("");
+    methods.resetField("image");
+  };
+
   const { errors } = methods.formState;
 
   return (
     <div className="h-container lg:w-1/2 m-auto flex flex-col justify-center gap-6">
       {imagePreviewUrl ? (
-        <ImagePreview image={imagePreviewUrl} error={errors.image?.message} />
+        <ImagePreview
+          image={imagePreviewUrl}
+          error={errors.image?.message}
+          onReset={handleResetImagePreview}
+        />
       ) : (
         <ImageInput onFileChange={handleFileChange} onDrop={handleDrop} />
       )}
